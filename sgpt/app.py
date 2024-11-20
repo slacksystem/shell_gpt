@@ -4,6 +4,7 @@ import os
 import readline  # noqa: F401
 import sys
 
+import pyperclip
 import typer
 from click import BadArgumentUsage
 from click.types import Choice
@@ -237,8 +238,8 @@ def main(
 
     while shell and interaction:
         option = typer.prompt(
-            text="[E]xecute, [D]escribe, [A]bort",
-            type=Choice(("e", "d", "a", "y"), case_sensitive=False),
+            text="[E]xecute, [C]opy to clipboard, [D]escribe, [A]bort",
+            type=Choice(("e", "c", "d", "a", "y"), case_sensitive=False),
             default="e" if cfg.get("DEFAULT_EXECUTE_SHELL_CMD") == "true" else "a",
             show_choices=False,
             show_default=False,
@@ -246,6 +247,8 @@ def main(
         if option in ("e", "y"):
             # "y" option is for keeping compatibility with old version.
             run_command(full_completion)
+        elif option == "c":
+            pyperclip.copy(full_completion)
         elif option == "d":
             DefaultHandler(DefaultRoles.DESCRIBE_SHELL.get_role(), md).handle(
                 full_completion,

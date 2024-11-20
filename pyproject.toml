@@ -8,7 +8,7 @@ description = "A command-line productivity tool powered by large language models
 keywords = ["shell", "gpt", "openai", "ollama", "cli", "productivity", "cheet-sheet"]
 readme = "README.md"
 license = "MIT"
-requires-python = ">=3.6"
+requires-python = ">=3.10"
 authors = [{ name = "Farkhod Sadykov", email = "farkhod@sadykov.dev" }]
 dynamic = ["version"]
 classifiers = [
@@ -35,6 +35,7 @@ dependencies = [
     "distro >= 1.8.0, < 2.0.0",
     "instructor >= 0.4.5, < 1.0.0",
     'pyreadline3 >= 3.4.1, < 4.0.0; sys_platform == "win32"',
+    "pyperclip>=1.9.0",
 ]
 
 [project.optional-dependencies]
